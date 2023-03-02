@@ -1,0 +1,4 @@
+# 项目排除路径
+/cora-rpc-common/target/
+/cora-rpc-consumer/target/
+/cora-rpc-provider/target/
