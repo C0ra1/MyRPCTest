@@ -1,55 +1,69 @@
 package consumer.service_discovery;
 
-import constants.RpcConstants;
+import annotation.LoadBalanceMethodImpl;
+import configuration.GlobalConfiguration;
 import consumer.nio.NIONonBlockingClient12;
 import exception.RpcException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import static constants.RpcConstants.ZOOKEEPER_ADDRESS;
+import static constants.RpcConstants.ZOOKEEPER_SESSION_TIMEOUT;
 
 /**
  * @author C0ra1
- * @version 1.0
  */
+@Slf4j
 public class ZkServiceDiscovery {
-    private static String connectString = RpcConstants.ZOOKEEPER_ADDRESS;
-    private static int sessionTimeout = RpcConstants.ZOOKEEPER_SESSION_TIMEOUT;
-    private static ZooKeeper zooKeeper;
+    private static final ThreadLocal<ZooKeeper> zooKeeperThreadLocal = ThreadLocal.withInitial(() -> {
+        try {
+            return new ZooKeeper(ZOOKEEPER_ADDRESS, ZOOKEEPER_SESSION_TIMEOUT, watchedEvent -> {
 
-    //µÚÒ»²½µ±È»ÊÇÁ¬½Óµ½Ô¶¶Ë·şÎñÆ÷ÉÏÁË
-    public static void getConnect() throws IOException {
-        zooKeeper = new ZooKeeper(connectString, sessionTimeout, new Watcher() {
-            @Override
-            public void process(WatchedEvent watchedEvent) {
-            }
-        });
-    }
-
-    // ¸ù¾İËùÇëÇóµÄ·şÎñµØÖ· »ñÈ¡¶ÔÓ¦µÄÔ¶¶ËµØÖ·
-    public static String getMethodAddress(String methodName) throws RpcException,
-            InterruptedException, KeeperException {
-        //ÅĞ¶Ï½ÚµãÖĞÊÇ·ñ´æÔÚ¶ÔÓ¦Â·¾¶ ²»´æÔÚÔòÅ×³öÒì³£
-        if (zooKeeper.exists("/service/"+methodName,null)==null)
-        {
-            System.out.println("²»´æÔÚ¸Ã·½·¨");
-            throw new RpcException();
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-        //µ½¶ÔÓ¦½ÚµãÖĞ»ñÈ¡µØÖ· stat½Úµã×´Ì¬ĞÅÏ¢±äÁ¿
-        byte[] data = zooKeeper.getData("/service/" + methodName, false,null);
-        String address = new String(data);
-        return address;
+    });
+
+
+    // æ ¹æ®æ‰€è¯·æ±‚çš„æœåŠ¡åœ°å€ è·å–å¯¹åº”çš„è¿œç«¯åœ°å€
+    public static String getMethodAddress(String methodName) {
+        //è·å–å¯¹åº”çº¿ç¨‹ä¸­çš„zookeeper
+        ZooKeeper zooKeeper = zooKeeperThreadLocal.get();
+
+        try {
+            //åˆ¤æ–­èŠ‚ç‚¹ä¸­æ˜¯å¦å­˜åœ¨å¯¹åº”è·¯å¾„  ä¸å­˜åœ¨åˆ™æŠ›å‡ºå¼‚å¸¸
+            if (zooKeeper.exists("/service/" + methodName, null) == null) {
+                throw new RpcException("ä¸å­˜åœ¨è¯¥æ–¹æ³•");
+            }
+            String prePath = "/service/" + methodName;
+            //v1.5ä¿®æ”¹ä½¿ç”¨è´Ÿè½½å‡è¡¡ç­–ç•¥ æ ¹æ®æ¥å£ä¸Šæ³¨è§£é€‰æ‹©çš„å®ç°ç±»è¿›è¡Œè°ƒç”¨
+            LoadBalanceMethodImpl annotation = GlobalConfiguration.class.getAnnotation(LoadBalanceMethodImpl.class);
+            Class methodClass = annotation.chosenMethod();
+            Method method = methodClass.getMethod("loadBalance", ZooKeeper.class, String.class);
+            //è¢«é€‰ä¸­çš„è´Ÿè½½å‡è¡¡å®ç°ç±»çš„å¯¹è±¡  é€šè¿‡åå°„æ‰§è¡Œ  è·å–å¯¹åº”çš„åœ°å€
+            Object methodChosenClass = methodClass.newInstance();
+            return (String) method.invoke(methodChosenClass, zooKeeper, prePath);
+        } catch (KeeperException | InterruptedException | RpcException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
     }
 
-    public static String getStart(String methodName, String msg) throws RpcException, InterruptedException, KeeperException, IOException {
-        //»ñÈ¡ÏàÓ¦µÄÔ¶¶ËµØÖ·
+
+    public static String getStart(String methodName, String msg) throws IOException {
+        //è·å–ç›¸åº”çš„è¿œç«¯åœ°å€
         String methodAddress = getMethodAddress(methodName);
-        //½øĞĞÁ¬½Ó
+        //è¿›è¡Œè¿æ¥
         assert methodAddress != null;
         String[] strings = methodAddress.split(":");
-        //Æô¶¯
+        //å¯åŠ¨
         String address = strings[0];
         int port = Integer.parseInt(strings[1]);
         return NIONonBlockingClient12.start(address, port, msg);

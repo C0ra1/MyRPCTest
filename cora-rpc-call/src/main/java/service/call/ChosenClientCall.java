@@ -18,8 +18,8 @@ public class ChosenClientCall {
         RpcToolsSelector annotation = ClientCall.class.getAnnotation(RpcToolsSelector.class);
         switch (annotation.rpcTool()) {
             //暂时还没有 return的对象
-//            case "Netty":
-//                return NettyClientCall.main(null);
+            case "Netty":
+                return NettyClientCall.main(null);
             case "Nio":
                 return NIOClientCall.main(null);
             default:

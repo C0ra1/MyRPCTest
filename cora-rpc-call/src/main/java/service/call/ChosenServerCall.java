@@ -18,9 +18,9 @@ public class ChosenServerCall {
     public static void start() throws IOException {
         RpcToolsSelector annotation = ServerCall.class.getAnnotation(RpcToolsSelector.class);
         switch (annotation.rpcTool()) {
-//            case "Netty":
-//                NettyServerCall.main(null);
-//                break;
+            case "Netty":
+                NettyServerCall.main(null);
+                break;
             case "Nio":
                 NIOServerCall.main(null);
                 break;

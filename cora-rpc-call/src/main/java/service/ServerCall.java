@@ -15,8 +15,9 @@ import java.io.IOException;
  * 方法的注册名必须和对应的方法一一对应
  */
 @RpcMethodCluster(method = {"Hello", "Bye", "GetName", "GetPerson"}, startNum = {2, 3, 3, 1})
-@RpcServerBootStrap(version = "1.2")
-@RpcToolsSelector(rpcTool = "Nio")
+@RpcServerBootStrap(version = "2.0")
+//@RpcToolsSelector(rpcTool = "Nio")
+@RpcToolsSelector(rpcTool = "Netty")
 public class ServerCall {
     public static void main(String[] args) throws IOException {
         ChosenServerCall.start();

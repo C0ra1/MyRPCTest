@@ -1,29 +1,20 @@
-package service.nio_bootstrap;
+package service.netty_bootstrap;
 
-import annotation.RpcClientBootStrap;
 import annotation.RpcMethodCluster;
 import annotation.RpcServerBootStrap;
 import exception.RpcException;
 import init.ZK;
 import lombok.extern.slf4j.Slf4j;
-import provider.bootstrap.nio.*;
+import provider.bootstrap.netty.NettyProviderBootStrap20;
 import service.ServerCall;
-
-import java.io.IOException;
 
 /**
  * @author C0ra1
  * @version 1.0
- * 之后启动直接在这边启动根据 在注解中配置对应的版本号
- * 将相应的操作封装到之后的操作中即可
  */
-
 @Slf4j
-@RpcClientBootStrap(version = "1.2")
-public class NIOServerBootStrap {
-
-    public static void start() throws IOException {
-
+public class NettyServerBootStrap {
+    public static void start() {
         //先对ZK进行初始化
         ZK.init();
         RpcServerBootStrap annotation = ServerCall.class.getAnnotation(RpcServerBootStrap.class);
@@ -35,7 +26,7 @@ public class NIOServerBootStrap {
         RpcMethodCluster nowAnnotation = ServerCall.class.getAnnotation(RpcMethodCluster.class);
         String[] methods = nowAnnotation.method();
         int[] startNums = nowAnnotation.startNum();
-        //如果不存在那就返回
+
         //如果不存在那就返回  或者 不一致 就抛出异常
         try {
             if (methods.length == 0) throw new RpcException("传入方法数为0");
@@ -48,39 +39,40 @@ public class NIOServerBootStrap {
         //2.需要组合在一起传过去  如果不组合分别传 我怕就是端口号会出现问题
         StringBuilder methodBuilder = new StringBuilder();
         StringBuilder numBuilder = new StringBuilder();
-
-        //因为两个数量一致 那就不进行两次循环了
         for (int i = 0; i < methods.length; ++i) {
             methodBuilder.append(methods[i]);
             methodBuilder.append(",");
             numBuilder.append(startNums[i]);
             numBuilder.append(",");
         }
-        //除去最后多出来的,
         methodBuilder.deleteCharAt(methodBuilder.length() - 1);
         numBuilder.deleteCharAt(numBuilder.length() - 1);
 
+        //根据对应的启动版本进行启动
         switch (currentServerBootStrapVersion) {
-            case "1.0":
-                NIOProviderBootStrap10.main(null);
+
+            case "2.0": //2.0版本只是进行了测试 简单的实现了远端信息传输
+                NettyProviderBootStrap20.main(new String[]{"127.0.0.1", String.valueOf(6668)});
                 break;
-            case "1.1":
-                NIOProviderBootStrap11.main(null);
-                break;
-            case "1.2":
-                NIOProviderBootStrap12.main(null);
-                break;
-            case "1.4":
-                //1.4 增加了注册中心 zk
-                NIOProviderBootStrap14.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
-                break;
-            case "1.5":
-                //1.5 将注册中心换成了nacos
-                NIOProviderBootStrap15.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
-                break;
+//            case "2.1":
+//                NettyProviderBootStrap21.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
+//                break;
+//            case "2.2": //沿用 就是 做个区分  这个版本时进行序列化的测试
+//                NettyProviderBootStrap22.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
+//                break;
+//            case "2.4": //这个版本是个大版本 各种序列化工具出现和使用
+//            case "2.5":
+//            case "2.6":
+//            case "2.7":
+//            case "2.8":
+//            case "2.9":
+//            case "2.10":
+//            case "2.11":
+//                NettyProviderBootStrap24.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
+//                break;
             default:
                 try {
-                    throw new RpcException("太着急了兄弟，这个版本还没出呢！要不你给我提个PR");
+                    throw new RpcException("该版本还没出呢，你如果有想法可以私信我，或者提个pr");
                 } catch (RpcException e) {
                     log.error(e.getMessage(), e);
                 }
