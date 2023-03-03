@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 //注解的参数直接是要传入什么类
 
 /**
- * @author 祝英台炸油条
+ * @author C0ra1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

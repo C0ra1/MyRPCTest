@@ -4,10 +4,8 @@ import entity.Person;
 import entity.PersonPOJO;
 
 /**
- * @author C0ra1
- * @version 1.0
+ * @author ×£Ó¢Ì¨Õ¨ÓÍÌõ
  */
-
 public interface GetNameService {
     String sayGetName(Person person);
 

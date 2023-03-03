@@ -20,25 +20,25 @@ public class NIONonBlockingClient10 {
         start0(HostName, Port);
     }
 
-    // å¯åŠ¨
+    // Æô¶¯
     public static void start0(String hostName, int port) throws IOException {
         SocketChannel socketChannel = SocketChannel.open();
-        System.out.println("-----------æœåŠ¡æ¶ˆè´¹æ–¹å¯åŠ¨-------------");
+        System.out.println("-----------·şÎñÏû·Ñ·½Æô¶¯-------------");
         socketChannel.configureBlocking(false);
-        // å»ºç«‹è¿æ¥
+        // ½¨Á¢Á¬½Ó
         if (!socketChannel.connect(new InetSocketAddress(hostName, port))) {
             while (!socketChannel.finishConnect());
         }
-        // åˆ›å»ºé€‰æ‹©å™¨ï¼Œç›‘å¬è¯»äº‹ä»¶
+        // ´´½¨Ñ¡ÔñÆ÷£¬¼àÌı¶ÁÊÂ¼ş
         Selector selector = Selector.open();
         socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
 
-        // åŒ¿åçº¿ç¨‹ç›‘å¬è¯»äº‹ä»¶
+        // ÄäÃûÏß³Ì¼àÌı¶ÁÊÂ¼ş
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-                    //æ•è·å¼‚å¸¸ ç›‘å¬è¯»äº‹ä»¶
+                    //²¶»ñÒì³£ ¼àÌı¶ÁÊÂ¼ş
                     try {
                         if (selector.select(1000) == 0) {
                             continue;
@@ -49,14 +49,14 @@ public class NIONonBlockingClient10 {
                             ByteBuffer buffer = (ByteBuffer) key.attachment();
                             SocketChannel channel = (SocketChannel)key.channel();
                             int read = 1;
-                            //ç”¨è¿™ä¸ªçš„åŸå› æ˜¯æ€• å¤šçº¿ç¨‹å‡ºç°å½±å“
+                            //ÓÃÕâ¸öµÄÔ­ÒòÊÇÅÂ ¶àÏß³Ì³öÏÖÓ°Ïì
                             StringBuffer stringBuffer = new StringBuffer();
                             while (read != 0) {
                                 buffer.clear();
                                 read = channel.read(buffer);
                                 stringBuffer.append(new String(buffer.array(),0,read));
                             }
-                            System.out.println("æ”¶åˆ°æœåŠ¡ç«¯å›ä¿¡" + stringBuffer.toString());
+                            System.out.println("ÊÕµ½·şÎñ¶Ë»ØĞÅ" + stringBuffer.toString());
                             keyIterator.remove();
                         }
                     } catch (IOException e) {
@@ -66,14 +66,14 @@ public class NIONonBlockingClient10 {
             }
         }).start();
 
-        // çœŸæ­£çš„ä¸šåŠ¡é€»è¾‘ï¼Œç­‰å¾…é”®ç›˜ä¸Šè¾“å…¥ï¼Œè¿›è¡Œæ¶ˆæ¯å‘é€
+        // ÕæÕıµÄÒµÎñÂß¼­£¬µÈ´ı¼üÅÌÉÏÊäÈë£¬½øĞĞÏûÏ¢·¢ËÍ
         Scanner scanner = new Scanner(System.in);
         while (true) {
             int methodNum = scanner.nextInt();
             String message = scanner.next();
             String msg = new String(methodNum + "#" + message);
             socketChannel.write(ByteBuffer.wrap(msg.getBytes(StandardCharsets.UTF_8)));
-            System.out.println("æ¶ˆæ¯å‘é€");
+            System.out.println("ÏûÏ¢·¢ËÍ");
         }
     }
 }

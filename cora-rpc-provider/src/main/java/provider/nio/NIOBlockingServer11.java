@@ -21,24 +21,24 @@ import java.util.Set;
 @SuppressWarnings({"all"})
 public class NIOBlockingServer11 {
 
-    // å¯åŠ¨
+    // Æô¶¯
     public static void start(int PORT) throws IOException {
         start0(PORT);
     }
 
-    // çœŸæ­£å¯åŠ¨é€»è¾‘
+    // ÕæÕıÆô¶¯Âß¼­
     private static void start0(int port) {
-        //åˆ›å»ºå¯¹åº”çš„æœåŠ¡å™¨ç«¯é€šé“
+        //´´½¨¶ÔÓ¦µÄ·şÎñÆ÷¶ËÍ¨µÀ
         ServerSocketChannel serverSocketChannel = null;
         try {
             serverSocketChannel = ServerSocketChannel.open();
-            System.out.println("-----------æœåŠ¡æä¾›æ–¹å¯åŠ¨-------------");
-            //é˜»å¡ioä¸éœ€è¦é€‰æ‹©å™¨
+            System.out.println("-----------·şÎñÌá¹©·½Æô¶¯-------------");
+            //×èÈûio²»ĞèÒªÑ¡ÔñÆ÷
 
-            //ç»‘å®šç«¯å£å¼€å¯
+            //°ó¶¨¶Ë¿Ú¿ªÆô
             serverSocketChannel.bind(new InetSocketAddress(port));
 
-            //è¿™é‡Œæ³¨æ„ è¦è®¾ç½®  é˜»å¡çš„è¯  ä»–ä¼šä¸€ç›´ç­‰å¾…äº‹ä»¶æˆ–è€…æ˜¯å¼‚å¸¸æŠ›å‡ºçš„æ—¶å€™æ‰ä¼šç»§ç»­ ä¼šæµªè´¹cpu
+            //ÕâÀï×¢Òâ ÒªÉèÖÃ  ×èÈûµÄ»°  Ëû»áÒ»Ö±µÈ´ıÊÂ¼ş»òÕßÊÇÒì³£Å×³öµÄÊ±ºò²Å»á¼ÌĞø »áÀË·Ñcpu
             serverSocketChannel.configureBlocking(true);
         } catch (ClosedChannelException e) {
             e.printStackTrace();
@@ -46,8 +46,8 @@ public class NIOBlockingServer11 {
             e.printStackTrace();
         }
 
-        //çœŸæ­£çš„ä¸šåŠ¡é€»è¾‘ å°±æ˜¯ä¸‹é¢
-        //å¾ªç¯ç­‰å¾…å®¢æˆ·ç«¯çš„è¿æ¥å’Œæ£€æŸ¥äº‹ä»¶çš„å‘ç”Ÿ
+        //ÕæÕıµÄÒµÎñÂß¼­ ¾ÍÊÇÏÂÃæ
+        //Ñ­»·µÈ´ı¿Í»§¶ËµÄÁ¬½ÓºÍ¼ì²éÊÂ¼şµÄ·¢Éú
         while (true) {
             SocketChannel channel = null;
             try {
@@ -57,7 +57,7 @@ public class NIOBlockingServer11 {
                 e.printStackTrace();
             }
             assert channel != null;
-            System.out.println("æ¥è‡ª" + channel.socket().getRemoteSocketAddress() + " çš„è¿æ¥");
+            System.out.println("À´×Ô" + channel.socket().getRemoteSocketAddress() + " µÄÁ¬½Ó");
             SocketChannel finalChannel = channel;
             new Thread(() -> {
                 try {
@@ -75,13 +75,13 @@ public class NIOBlockingServer11 {
                             ByeService helloService = new ByeServiceImpl();
                             response = helloService.sayBye(request.getMessage());
                         } else {
-                            throw new RuntimeException("ä¼ å…¥é”™è¯¯");
+                            throw new RuntimeException("´«Èë´íÎó");
                         }
-                        System.out.println("æ”¶åˆ°å®¢æˆ·ç«¯" + finalChannel.socket().getRemoteSocketAddress() + "çš„æ¶ˆæ¯" + response);
+                        System.out.println("ÊÕµ½¿Í»§¶Ë" + finalChannel.socket().getRemoteSocketAddress() + "µÄÏûÏ¢" + response);
                         objectOutputStream.writeObject(response);
                     }
                 } catch (Exception e) {
-                    System.out.println("channel " + finalChannel.socket().getRemoteSocketAddress() + "æ–­å¼€è¿æ¥");
+                    System.out.println("channel " + finalChannel.socket().getRemoteSocketAddress() + "¶Ï¿ªÁ¬½Ó");
                     try {
                         finalChannel.close();
                     } catch (IOException ex) {

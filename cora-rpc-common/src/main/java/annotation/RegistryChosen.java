@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 //注册中心选择  默认采用zookeeper
 
 /**
- * @author 祝英台炸油条
+ * @author C0ra1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

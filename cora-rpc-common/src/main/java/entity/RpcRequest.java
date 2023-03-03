@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 /**
  * @author C0ra1
- * @version 1.0
  */
 @Data
 @AllArgsConstructor

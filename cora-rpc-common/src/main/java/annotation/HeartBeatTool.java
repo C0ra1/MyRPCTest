@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 //是否开启的工具类
 
 /**
- * @author 祝英台炸油条
+ * @author C0ra1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

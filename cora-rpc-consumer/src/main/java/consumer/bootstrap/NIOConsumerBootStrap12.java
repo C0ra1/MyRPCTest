@@ -1,7 +1,6 @@
 package consumer.bootstrap;
 
 import consumer.proxy.ClientProxyTool;
-import consumer.proxy.nio.RpcNioClientProxy;
 import method.Customer;
 
 /**
@@ -9,8 +8,8 @@ import method.Customer;
  * @version 1.0
  */
 public class NIOConsumerBootStrap12 {
-    public static void main(String[] args) {
+    public static Customer main(String[] args) {
         ClientProxyTool proxy = new ClientProxyTool();
-        System.out.println((Customer) proxy.getBean(Customer.class));
+        return (Customer) proxy.getBean(Customer.class);
     }
 }

@@ -19,42 +19,42 @@ public class NIOBlockingClient11 {
         start0(hostName, port);
     }
 
-    //çœŸæ­£å¯åŠ¨åœ¨è¿™
+    //ÕæÕıÆô¶¯ÔÚÕâ
     private static void start0(String hostName, int port) {
-        //å¾—åˆ°ä¸€ä¸ªç½‘ç»œé€šé“
+        //µÃµ½Ò»¸öÍøÂçÍ¨µÀ
         SocketChannel socketChannel = null;
         try {
             socketChannel = SocketChannel.open();
-            System.out.println("-----------æœåŠ¡æ¶ˆè´¹æ–¹å¯åŠ¨-------------");
-            //è®¾ç½®é˜»å¡
+            System.out.println("-----------·şÎñÏû·Ñ·½Æô¶¯-------------");
+            //ÉèÖÃ×èÈû
             socketChannel.configureBlocking(true);
-            //å»ºç«‹é“¾æ¥  é˜»å¡è¿æ¥  ä½†æˆ‘ä»¬æ˜¯è¦ç­‰ä»–è¿æ¥ä¸Š
+            //½¨Á¢Á´½Ó  ×èÈûÁ¬½Ó  µ«ÎÒÃÇÊÇÒªµÈËûÁ¬½ÓÉÏ
             socketChannel.connect(new InetSocketAddress(hostName, port));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //çœŸæ­£çš„ä¸šåŠ¡é€»è¾‘  ç­‰å¾…é”®ç›˜ä¸Šçš„è¾“å…¥ è¿›è¡Œå‘é€ä¿¡æ¯
+        //ÕæÕıµÄÒµÎñÂß¼­  µÈ´ı¼üÅÌÉÏµÄÊäÈë ½øĞĞ·¢ËÍĞÅÏ¢
         Scanner scanner = new Scanner(System.in);
 
-        //è¾“å…¥è¾“å‡ºé€šé“éƒ½æ”¾åœ¨å¤–é¢
+        //ÊäÈëÊä³öÍ¨µÀ¶¼·ÅÔÚÍâÃæ
 
         try {
             assert socketChannel != null;
             ObjectOutputStream outputStream = new ObjectOutputStream(socketChannel.socket().getOutputStream());
             ObjectInputStream objectInputStream = new ObjectInputStream(socketChannel.socket().getInputStream());
-            //éƒ½æ˜¯é˜»å¡ç­‰å¾… å‘å®Œäº† æ¥æ”¶å®Œäº† æ‰èƒ½è¿›è¡Œä¸‹ä¸€æ­¥ ä¸ç„¶ä¼šæŠ¥å¼‚å¸¸
+            //¶¼ÊÇ×èÈûµÈ´ı ·¢ÍêÁË ½ÓÊÕÍêÁË ²ÅÄÜ½øĞĞÏÂÒ»²½ ²»È»»á±¨Òì³£
             while (true) {
                 int methodNum = scanner.nextInt();
                 String message = scanner.next();
                 RpcRequest request = new RpcRequest(methodNum, message);
-                //è¿›è¡Œä¿®è®¢ ä½¿å¾—å¯ä»¥ä¼ é€å¯¹è±¡ é€šè¿‡è‡ªå¸¦çš„ioæµè¿›è¡Œ é¿å…å‡ºç°æ²¾åŒ…æ‹†åŒ…ç°è±¡
+                //½øĞĞĞŞ¶© Ê¹µÃ¿ÉÒÔ´«ËÍ¶ÔÏó Í¨¹ı×Ô´øµÄioÁ÷½øĞĞ ±ÜÃâ³öÏÖÕ´°ü²ğ°üÏÖÏó
 
                 outputStream.writeObject(request);
-                System.out.println("æ¶ˆæ¯å‘é€");
+                System.out.println("ÏûÏ¢·¢ËÍ");
                 try {
                     String msg = (String) objectInputStream.readObject();
-                    System.out.println("æ”¶åˆ°æ¥è‡ªå®¢æˆ·ç«¯çš„æ¶ˆæ¯" + msg);
+                    System.out.println("ÊÕµ½À´×Ô¿Í»§¶ËµÄÏûÏ¢" + msg);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }

@@ -1,8 +1,7 @@
 package method;
 
 /**
- * @author C0ra1
- * @version 1.0
+ * @author ×£Ó¢Ì¨Õ¨ÓÍÌõ
  */
 public interface HelloService {
     String sayHello(String saying);

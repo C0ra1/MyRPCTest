@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 //进行rpc工具的选择
 
 /**
- * @author 祝英台炸油条
+ * @author C0ra1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RpcToolsSelector {
-    String rpcTool() default "NIO";
+    String rpcTool() default "Nio";
 }

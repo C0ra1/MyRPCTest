@@ -7,7 +7,6 @@ import entity.PersonPOJO;
 
 /**
  * @author C0ra1
- * @version 1.0
  */
 public interface Customer {
     String Hello(String msg);

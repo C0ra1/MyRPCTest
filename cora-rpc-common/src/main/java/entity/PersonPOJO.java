@@ -109,7 +109,7 @@ public final class PersonPOJO {
     }
 
     @Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
       return PersonPOJO.internal_static_Person_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -309,7 +309,7 @@ public final class PersonPOJO {
 
     @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -330,7 +330,7 @@ public final class PersonPOJO {
       }
 
       @Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
         return PersonPOJO.internal_static_Person_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -343,7 +343,7 @@ public final class PersonPOJO {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }

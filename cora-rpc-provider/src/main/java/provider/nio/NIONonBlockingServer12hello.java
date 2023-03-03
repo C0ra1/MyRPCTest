@@ -53,10 +53,6 @@ public class NIONonBlockingServer12hello {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (KeeperException e) {
-            e.printStackTrace();
         }
 
         //真正的业务逻辑 就是下面

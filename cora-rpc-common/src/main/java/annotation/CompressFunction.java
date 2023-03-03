@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 //进行判断解压缩功能是否开启
 
 /**
- * @author 祝英台炸油条
+ * @author C0ra1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
