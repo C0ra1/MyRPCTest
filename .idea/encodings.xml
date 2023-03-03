@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/cora-rpc-common/src/main/java/entity" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cora-rpc-common/src/main/java/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cora-rpc-common/src/main/java/method/GetPersonService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cora-rpc-common/src/main/resources/db.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cora-rpc-common/src/main/resources/services" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/main/java/consumer/bootstrap/nio/NIOConsumerBootstrap10.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/main/java/consumer/nio/NIOBlockingClient11.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/main/java/consumer/nio/NIONonBlockingClient10.java" charset="GBK" />

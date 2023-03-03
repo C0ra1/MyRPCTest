@@ -14,6 +14,7 @@ public class SPIClientProxyUtils {
     public static ClientProxy getUtils() {
         ServiceLoader<ClientProxy> loader = ServiceLoader.load(ClientProxy.class);
         for (ClientProxy clientProxy : loader) {
+            System.out.println(clientProxy);
             return clientProxy;
         }
         try {

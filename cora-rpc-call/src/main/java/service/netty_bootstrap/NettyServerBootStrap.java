@@ -6,6 +6,7 @@ import exception.RpcException;
 import init.ZK;
 import lombok.extern.slf4j.Slf4j;
 import provider.bootstrap.netty.NettyProviderBootStrap20;
+import provider.bootstrap.netty.NettyProviderBootStrap21;
 import service.ServerCall;
 
 /**
@@ -54,8 +55,8 @@ public class NettyServerBootStrap {
             case "2.0": //2.0版本只是进行了测试 简单的实现了远端信息传输
                 NettyProviderBootStrap20.main(new String[]{"127.0.0.1", String.valueOf(6668)});
                 break;
-//            case "2.1":
-//                NettyProviderBootStrap21.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
+            case "2.1":
+                NettyProviderBootStrap21.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
 //                break;
 //            case "2.2": //沿用 就是 做个区分  这个版本时进行序列化的测试
 //                NettyProviderBootStrap22.main(new String[]{methodBuilder.toString(), numBuilder.toString()});

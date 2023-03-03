@@ -2,6 +2,7 @@ package service.netty_bootstrap;
 
 import annotation.RpcClientBootStrap;
 import consumer.bootstrap.netty.NettyConsumerBootStrap20;
+import consumer.bootstrap.netty.NettyConsumerBootStrap21;
 import exception.RpcException;
 import lombok.extern.slf4j.Slf4j;
 import method.Customer;
@@ -26,8 +27,8 @@ public class NettyClientBootStrap {
             case "2.0": //2.0就是简单实现远端调用 所以没实现太那个
                 NettyConsumerBootStrap20.main(new String[]{"127.0.0.1", String.valueOf(6668)});
                 return null;
-//            case "2.1":
-//                return NettyConsumerBootStrap21.main();
+            case "2.1":
+                return NettyConsumerBootStrap21.main();
 //            case "2.2":
 //                return NettyConsumerBootStrap22.main();
 //            case "2.4": //这个版本各种序列化工具的使用

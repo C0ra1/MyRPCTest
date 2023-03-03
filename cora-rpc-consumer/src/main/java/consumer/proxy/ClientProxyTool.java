@@ -9,6 +9,8 @@ import java.util.Objects;
 public class ClientProxyTool implements ClientProxy {
     @Override
     public Object getBean(Class<?> serviceClass) {
+        System.out.println(serviceClass);
+        System.out.println(SPIClientProxyUtils.getUtils());
         return Objects.requireNonNull(SPIClientProxyUtils.getUtils()).getBean(serviceClass);
     }
 }
