@@ -3,6 +3,7 @@ package service;
 import annotation.RpcClientBootStrap;
 import annotation.RpcToolsSelector;
 import entity.Person;
+import entity.PersonPOJO;
 import lombok.extern.slf4j.Slf4j;
 import method.Customer;
 import service.call.ChosenClientCall;
@@ -45,9 +46,9 @@ public class ClientCall {
         log.info(customer.GetName(new Person("zzz")));
         log.info(customer.GetName(new Person("zzz")));
         //2.4版本之前的测试
-        // log.info(customer.GetPerson(PersonPOJO.Person.newBuilder().setName("炸油条").build()));
+        //log.info(customer.GetPerson(PersonPOJO.Person.newBuilder().setName("炸油条").build()));
         //测试
-        // log.info(customer.GetName(PersonPOJO.Person.newBuilder().setName("炸油条").build()));
+         log.info(customer.GetName(PersonPOJO.Person.newBuilder().setName("炸油条").build()));
 
 
         // nio使用测试  netty也可以使用
