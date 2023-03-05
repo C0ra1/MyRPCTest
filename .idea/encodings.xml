@@ -20,6 +20,9 @@
     <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/main/java/consumer/service_discovery/NacosServiceDiscovery.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/main/java/consumer/service_discovery/ZkCuratorDiscovery.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/main/java/consumer/service_discovery/ZkServiceDiscovery.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/test/java/CGLIBTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/test/java/NacosTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cora-rpc-consumer/src/test/java/ZKServiceTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cora-rpc-provider/src/main/java/provider/api/ByeServiceImpl.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/cora-rpc-provider/src/main/java/provider/api/GetNameServiceImpl.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/cora-rpc-provider/src/main/java/provider/api/GetPersonServiceImpl.java" charset="GBK" />

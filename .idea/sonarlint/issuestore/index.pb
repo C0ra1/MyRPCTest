@@ -17,10 +17,6 @@ h
 8cora-rpc-common/src/main/java/compress/CompressType.java,0\e\0e8a3deee5ef83255ceaaacfc76d3a932ac8d0b1
 l
 <cora-rpc-common/src/main/java/compress/CompressTypeTool.java,e\6\e6ab49074d846393f17b2b8aa6e15f56d8c83701
-t
-Dcora-rpc-common/src/main/java/loadbalance/ConsistentLoadBalance.java,6\7\67c0b2e2ab7e9249736ed114ac3e55e267c28188
-n
->cora-rpc-common/src/main/java/compress/diyzip/DiyZipUtils.java,9\c\9c115c3c50d9fc60c1a1b4086a538cb9a5666f72
 s
 Ccora-rpc-common/src/main/java/serialization/json/FastJsonUtils.java,b\8\b863b687bb4796a1d6b226611e0c1998301be8dc
 m
@@ -149,8 +145,6 @@ Pcora-rpc-provider/src/main/java/provider/service_registry/ZkCuratorRegistry.jav
 Rcora-rpc-consumer/src/main/java/consumer/service_discovery/ZkServiceDiscovery.java,6\6\666943fa57404e8daee4d382160e710aee4ad319
 n
 >cora-rpc-common/src/main/java/annotation/RpcToolsSelector.java,9\4\94649aee58deee4f7f1dce91422a66d5ca86db87
-q
-Acora-rpc-consumer/src/main/java/consumer/netty/NettyClient21.java,8\2\820fea5d4ae37a49dcc6f8384ff7c54e114d1156
 ‡
 Wcora-rpc-consumer/src/main/java/consumer/netty_client_handler/NettyClientHandler21.java,e\c\ec9fb07be2bd9fe26d8c4f1be760d7c33f8b4bae
 †
