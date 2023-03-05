@@ -14,8 +14,8 @@ public class RpcConstants {
     public final static int ZOOKEEPER_SESSION_TIMEOUT = 2000;
 
 
-    public final static String NACOS_DISCOVERY_ADDRESS = "http://192.168.18.128:8848/nacos/v1/ns/instance/list?";
-
+//    public final static String NACOS_DISCOVERY_ADDRESS = "http://192.168.18.128:8848/nacos/v1/ns/instance/list?";
+    public final static String NACOS_DISCOVERY_ADDRESS = "http://127.0.0.1:8848/nacos/v1/ns/instance/list?";
     //找到对应要注册的地方
     public static Properties NACOS_PROPERTIES = new Properties();
 

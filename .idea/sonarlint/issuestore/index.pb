@@ -67,8 +67,6 @@ e
 5cora-rpc-common/src/main/java/serialization/README.md,b\5\b5eeee6c01ae0484fddec9649efe580b6322a4c8
 d
 4cora-rpc-common/src/main/java/register/Register.java,b\2\b2ed68752e8a9645b678218cbd56442f914a0df4
-i
-9cora-rpc-common/src/main/java/constants/RpcConstants.java,f\6\f6d467164d0c0dc11bae03bee2ad62b531fa76bd
 n
 >cora-rpc-common/src/main/java/annotation/RpcMethodCluster.java,8\a\8a9039b2b111a3740b36b769698942aaa758abf7
 e
@@ -151,8 +149,6 @@ Wcora-rpc-consumer/src/main/java/consumer/netty_client_handler/NettyClientHandle
 Vcora-rpc-consumer/src/main/java/consumer/bootstrap/netty/NettyConsumerBootStrap22.java,3\3\336a5e67d9d50b65403e0f97aa37be81a2d7d262
 †
 Vcora-rpc-consumer/src/main/java/consumer/bootstrap/netty/NettyConsumerBootStrap24.java,3\f\3fc08552f16c8d4cc0aa062d4b212919512493d3
-†
-Vcora-rpc-provider/src/main/java/provider/bootstrap/netty/NettyProviderBootStrap21.java,e\0\e07ae787fe943742a690e665d62893e0296d5bd0
 ‡
 Wcora-rpc-provider/src/main/java/provider/netty_server_handler/NettyServerHandler21.java,e\d\ed5fc5af5c101a143da416bc1b582d652b4089dd
 9
@@ -161,12 +157,8 @@ Wcora-rpc-provider/src/main/java/provider/netty_server_handler/NettyServerHandle
 Rcora-rpc-consumer/src/main/java/consumer/proxy/netty/RpcNettyClientCGLIBProxy.java,8\8\88baa58dbbba3392db5f7804713a3ae1f5fc296d
 q
 Acora-rpc-provider/src/main/java/provider/netty/NettyServer21.java,b\1\b112cc41de6056d88e00e1cdd5bb680a70748ac4
-n
->cora-rpc-call/src/main/java/service/call/ChosenServerCall.java,9\b\9b38e3d0996e59eb2055eb02758c1ccb2465d02c
 p
 @cora-rpc-common/src/main/java/annotation/RpcClientBootStrap.java,1\d\1db062f78d4b4eb2740ea15a50209acb2427c3fe
-n
->cora-rpc-call/src/main/java/service/call/ChosenClientCall.java,a\a\aad862283b0a4271bd27bc7770538566c0711809
 †
 Vcora-rpc-consumer/src/main/java/consumer/bootstrap/netty/NettyConsumerBootStrap20.java,7\2\7263f3daf9674ff979a8618cc82ebdcfed58a24c
 b
@@ -183,11 +175,5 @@ o
 ?cora-rpc-consumer/src/main/java/consumer/proxy/ClientProxy.java,a\7\a7de5171590fa12f3a3ec2f6f3485ac2572b4085
 s
 Ccora-rpc-consumer/src/main/java/consumer/proxy/ClientProxyTool.java,3\0\302ef2ce0d744122383399ba9aabdf05ed0b591d
-}
-Mcora-rpc-call/src/main/java/service/netty_bootstrap/NettyClientBootStrap.java,3\b\3b53c22913a44e60c281383e554f43fdde137098
-}
-Mcora-rpc-call/src/main/java/service/netty_bootstrap/NettyServerBootStrap.java,e\9\e9dcd536b24c55314cf9f35bcbdb7ddd28ae02e8
-€
-Pcora-rpc-consumer/src/main/java/consumer/proxy/netty/RpcNettyClientJDKProxy.java,6\d\6ddb8179845518d677e4fdcdb2e601c6550052db
 w
 Gcora-rpc-consumer/src/main/java/consumer/proxy/SPIClientProxyUtils.java,a\0\a04e01d97ff2ed3cc1f76e84c973f063cb5704a9

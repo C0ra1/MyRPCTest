@@ -7,6 +7,8 @@ import init.ZK;
 import lombok.extern.slf4j.Slf4j;
 import provider.bootstrap.netty.NettyProviderBootStrap20;
 import provider.bootstrap.netty.NettyProviderBootStrap21;
+import provider.bootstrap.netty.NettyProviderBootStrap22;
+import provider.bootstrap.netty.NettyProviderBootStrap24;
 import service.ServerCall;
 
 /**
@@ -57,11 +59,11 @@ public class NettyServerBootStrap {
                 break;
             case "2.1":
                 NettyProviderBootStrap21.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
-//                break;
-//            case "2.2": //沿用 就是 做个区分  这个版本时进行序列化的测试
-//                NettyProviderBootStrap22.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
-//                break;
-//            case "2.4": //这个版本是个大版本 各种序列化工具出现和使用
+                break;
+            case "2.2": //沿用 就是 做个区分  这个版本时进行序列化的测试
+                NettyProviderBootStrap22.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
+                break;
+            case "2.4": //这个版本是个大版本 各种序列化工具出现和使用
 //            case "2.5":
 //            case "2.6":
 //            case "2.7":
@@ -69,8 +71,8 @@ public class NettyServerBootStrap {
 //            case "2.9":
 //            case "2.10":
 //            case "2.11":
-//                NettyProviderBootStrap24.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
-//                break;
+                NettyProviderBootStrap24.main(new String[]{methodBuilder.toString(), numBuilder.toString()});
+                break;
             default:
                 try {
                     throw new RpcException("该版本还没出呢，你如果有想法可以私信我，或者提个pr");

@@ -21,7 +21,7 @@ import static constants.RpcConstants.NACOS_DISCOVERY_ADDRESS;
 public class NacosTest {
     @Test
     public void nacosDiscovery() {
-        String serviceName = "nacos.test.1";
+        String serviceName = "nacos";
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpUriRequest request = RequestBuilder.get(URI.create(NACOS_DISCOVERY_ADDRESS + "serviceName=" + serviceName)).build();
         try {

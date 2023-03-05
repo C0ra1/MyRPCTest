@@ -16,8 +16,8 @@ import service.call.ChosenClientCall;
  */
 
 @Slf4j
-//@RpcClientBootStrap(version = "2.4")
-@RpcClientBootStrap(version = "2.1")
+@RpcClientBootStrap(version = "2.4")
+//@RpcClientBootStrap(version = "2.1")
 @RpcToolsSelector(rpcTool = "Netty")
 //@RpcToolsSelector(rpcTool = "Nio")
 public class ClientCall {
@@ -48,14 +48,14 @@ public class ClientCall {
         //2.4版本之前的测试
         //log.info(customer.GetPerson(PersonPOJO.Person.newBuilder().setName("炸油条").build()));
         //测试
-         log.info(customer.GetName(PersonPOJO.Person.newBuilder().setName("炸油条").build()));
+         log.info(customer.GetName(PersonPOJO.Person.newBuilder().setName("cora—cora").build()));
 
 
         // nio使用测试  netty也可以使用
-//        log.info(customer.Hello("success"));
-//        log.info(customer.Bye("fail"));
-//        log.info(customer.Bye("fail"));
-//        log.info(customer.Bye("fail"));
+        log.info(customer.Hello("success"));
+        log.info(customer.Bye("fail"));
+        log.info(customer.Bye("fail"));
+        log.info(customer.Bye("fail"));
 
 
         // long end = System.currentTimeMillis();
